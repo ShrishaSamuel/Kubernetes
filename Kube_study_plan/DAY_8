@@ -1,0 +1,35 @@
+Day 20 — Jun 29 — Ingress + Nginx Controller
+Study
+
+Ingress = L7 routing (host/path-based). Needs an Ingress Controller (nginx, traefik, istio).
+TLS termination at ingress.
+IngressClass.
+Hands-On
+
+# minikube
+minikube addons enable ingress
+
+# Apply ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: {name: web-ing}
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: web.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend: {service: {name: web, port: {number: 80}}}
+
+echo "$(minikube ip) web.local" | sudo tee -a /etc/hosts
+curl http://web.local
+
+Interview Qs
+
+Difference between Service type LoadBalancer and Ingress.
+What is an Ingress Controller? Name a few.
+How do you do path-based vs host-based routing?
+How is TLS handled at the Ingress?
+What is the Gateway API and how does it differ from Ingress?
