@@ -1,0 +1,24 @@
+Study
+
+Cluster Autoscaler: scales node groups based on unschedulable pods. ASG-based.
+Karpenter: provisions nodes directly via EC2 API, picks instance types just-in-time. Faster, more flexible.
+EKS upgrades: control plane → node groups → addons (CoreDNS, kube-proxy, VPC CNI).
+Hands-On
+
+# Deploy app + ALB ingress to EKS
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl apply -f ingress.yaml   # annotated for ALB
+
+# Install Karpenter (per docs), define a NodePool/EC2NodeClass
+# Scale a deployment to force node provisioning
+kubectl scale deploy web --replicas=50
+kubectl get nodes -w
+
+Interview Qs
+
+Karpenter vs Cluster Autoscaler — pros/cons.
+How do you upgrade an EKS cluster safely?
+What addons must be upgraded alongside the control plane?
+How do you drain a node? What does PDB do?
+How do you do zero-downtime node rotation?
