@@ -1,18 +1,17 @@
 Study
-
 requests = guaranteed (scheduling), limits = max (enforced by kernel).
 QoS classes: Guaranteed (req==limit), Burstable (req<limit), BestEffort (none).
 CPU is compressible (throttle), memory is not (OOMKill).
-Hands-On
 
+Hands-On
 resources:
   requests: {cpu: "100m", memory: "128Mi"}
   limits:   {cpu: "200m", memory: "256Mi"}
 
 Run a memory hog: stress --vm 1 --vm-bytes 300M → observe OOMKilled in kubectl describe.
 Run a CPU hog → observe throttling via kubectl top pod.
-Interview Qs
 
+Interview Qs
 Difference between requests and limits.
 Explain the 3 QoS classes.
 What happens when CPU limit is exceeded vs memory limit?
