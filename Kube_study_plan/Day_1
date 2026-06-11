@@ -1,0 +1,26 @@
+Day 13 — Jun 22 — K8s Architecture
+
+Study
+Control plane: kube-apiserver, etcd, kube-scheduler, kube-controller-manager, cloud-controller-manager.
+Worker node: kubelet, kube-proxy, container runtime (containerd/CRI-O).
+Flow of a kubectl apply: client → API server → etcd → scheduler → kubelet → runtime.
+Why etcd needs quorum (Raft).
+
+Hands-On
+# Pick one
+minikube start --driver=docker
+# or
+kind create cluster --name dev
+
+kubectl cluster-info
+kubectl get nodes -o wide
+kubectl get componentstatuses
+kubectl get pods -n kube-system
+
+Interview Qs
+
+Walk me through what happens when you run kubectl apply -f pod.yaml.
+Why is etcd the source of truth? What happens if it goes down?
+Difference between kube-scheduler and kube-controller-manager.
+What does kubelet do exactly? Does it talk to etcd?
+What is CRI? Why was Docker shim deprecated?
