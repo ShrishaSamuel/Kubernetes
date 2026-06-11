@@ -1,0 +1,30 @@
+Study
+
+Logical isolation, not network isolation.
+Default namespaces: default, kube-system, kube-public, kube-node-lease.
+ResourceQuota (per-namespace limits) vs LimitRange (per-pod/container defaults).
+Hands-On
+
+kubectl create namespace dev
+kubectl config set-context --current --namespace=dev
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ResourceQuota
+metadata: {name: dev-quota, namespace: dev}
+spec:
+  hard:
+    pods: "10"
+    requests.cpu: "2"
+    requests.memory: 2Gi
+    limits.cpu: "4"
+    limits.memory: 4Gi
+EOF
+kubectl describe quota -n dev
+
+Interview Qs
+
+Are namespaces a security boundary?
+ResourceQuota vs LimitRange.
+Can a pod in ns-a talk to a pod in ns-b by default?
+Which resources are namespace-scoped vs cluster-scoped?
+How do you move a resource between namespaces?
