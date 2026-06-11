@@ -1,5 +1,3 @@
-Day 13 — Jun 22 — K8s Architecture
-
 Study
 Control plane: kube-apiserver, etcd, kube-scheduler, kube-controller-manager, cloud-controller-manager.
 Worker node: kubelet, kube-proxy, container runtime (containerd/CRI-O).
@@ -18,7 +16,6 @@ kubectl get componentstatuses
 kubectl get pods -n kube-system
 
 Interview Qs
-
 Walk me through what happens when you run kubectl apply -f pod.yaml.
 Why is etcd the source of truth? What happens if it goes down?
 Difference between kube-scheduler and kube-controller-manager.
