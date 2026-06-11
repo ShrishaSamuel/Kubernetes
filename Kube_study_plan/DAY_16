@@ -1,0 +1,33 @@
+Study
+
+Default: all pods can talk to all pods. NetworkPolicy = whitelist.
+Requires a CNI that supports it (Calico, Cilium; flannel does not).
+Ingress and egress rules; podSelector, namespaceSelector, ipBlock.
+Hands-On
+
+# Deny all ingress in namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: deny-all, namespace: dev}
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+---
+# Allow only from app=frontend
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-frontend}
+spec:
+  podSelector: {matchLabels: {app: backend}}
+  ingress:
+  - from:
+    - podSelector: {matchLabels: {app: frontend}}
+
+Test with kubectl exec ... -- wget -qO- backend.
+Interview Qs
+
+What is the default network policy in K8s?
+Why doesn't flannel support NetworkPolicy?
+Ingress vs egress rules.
+How do you write a deny-all then allow-specific policy?
+Difference between podSelector and namespaceSelector.
