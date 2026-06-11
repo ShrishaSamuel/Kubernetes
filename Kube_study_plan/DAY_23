@@ -1,0 +1,39 @@
+Study
+
+Review all 22 days. Re-read your notes; redraw the architecture diagram from memory.
+Write these YAMLs from scratch, no docs: Pod, Deployment+Service, ConfigMap+Secret mount, Ingress, HPA, StatefulSet+headless, PVC, Role+RoleBinding+SA, NetworkPolicy deny-all, Pod with taint toleration + nodeAffinity, CronJob.
+Hands-On
+
+Mock interview: 90 minutes, no Google. Time yourself.
+30 Consolidated Interview Questions
+
+Walk me through what happens when you kubectl apply a Deployment.
+Difference between Deployment, StatefulSet, DaemonSet, Job.
+Explain QoS classes and OOMKill behavior.
+How does a Service find its pods? What is an EndpointSlice?
+ClusterIP vs NodePort vs LoadBalancer vs Ingress.
+How does DNS work inside the cluster?
+ConfigMap vs Secret. Are Secrets encrypted?
+Liveness vs readiness vs startup probe.
+How does HPA decide to scale? What's required for it to work?
+Explain rolling update with maxSurge and maxUnavailable.
+How do you rollback a Deployment? What about a Helm release?
+PV vs PVC vs StorageClass. What is dynamic provisioning?
+Access modes — explain RWO and RWX.
+Headless service — what and why.
+Role vs ClusterRole; RoleBinding vs ClusterRoleBinding.
+How does a pod authenticate to the API server?
+What is IRSA in EKS?
+NetworkPolicy — write a deny-all-then-allow-frontend.
+Taint effects and tolerations — when do you use each.
+nodeSelector vs nodeAffinity vs pod affinity.
+How do you debug CrashLoopBackOff? Pending? ImagePullBackOff?
+What is a PDB? Why does it matter during upgrades?
+Helm hooks — give two use cases.
+How do you template environment-specific values in Helm?
+Cluster Autoscaler vs Karpenter.
+How do you safely upgrade an EKS cluster?
+What is CSI? CNI? CRI?
+How does the scheduler decide where to place a pod?
+Difference between kubectl create, apply, replace.
+Design: deploy a stateful microservice with persistent storage, autoscaling, secrets from Vault, and zero-downtime upgrades. Walk through the YAML/components.
