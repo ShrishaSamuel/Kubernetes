@@ -1,0 +1,26 @@
+Study
+
+Chart structure: Chart.yaml, values.yaml, templates/, charts/ (deps).
+Release = installed instance. Revisions tracked in cluster.
+Helm 3 (no Tiller).
+Hands-On
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-redis bitnami/redis
+helm list
+helm upgrade my-redis bitnami/redis --set auth.password=foo
+helm history my-redis
+helm rollback my-redis 1
+helm uninstall my-redis
+
+helm create mychart   # explore the scaffold
+helm template mychart
+helm install demo ./mychart --dry-run --debug
+
+Interview Qs
+
+What problem does Helm solve?
+Helm 2 vs Helm 3.
+Files in a chart and their purpose.
+How do helm upgrade and helm rollback work internally?
+Difference between helm template and helm install.
