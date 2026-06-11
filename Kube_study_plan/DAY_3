@@ -1,5 +1,4 @@
 Study
-
 Deployment → ReplicaSet → Pods.
 Rolling update strategy vs Recreate. maxSurge, maxUnavailable.
 Revision history, rollback mechanism.
@@ -14,7 +13,6 @@ kubectl rollout undo deployment/web
 kubectl rollout undo deployment/web --to-revision=2
 
 Interview Qs
-
 Deployment vs ReplicaSet vs ReplicationController.
 Explain rolling update with maxSurge=1, maxUnavailable=0.
 How does rollback work internally?
