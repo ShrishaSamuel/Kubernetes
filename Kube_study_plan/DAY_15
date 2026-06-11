@@ -1,0 +1,22 @@
+Study
+
+Subjects: User, Group, ServiceAccount.
+Roles (namespaced) vs ClusterRoles (cluster-wide).
+RoleBinding vs ClusterRoleBinding.
+kubectl auth can-i.
+Hands-On
+
+kubectl create sa app-sa
+kubectl create role pod-reader --verb=get,list,watch --resource=pods
+kubectl create rolebinding read-pods --role=pod-reader --serviceaccount=default:app-sa
+
+kubectl auth can-i list pods --as=system:serviceaccount:default:app-sa
+kubectl auth can-i delete pods --as=system:serviceaccount:default:app-sa
+
+Interview Qs
+
+Role vs ClusterRole.
+RoleBinding vs ClusterRoleBinding (and the cross combo).
+How does a pod get a ServiceAccount token?
+Principle of least privilege — give an example RBAC for a CI deployer.
+What is IRSA (AWS) at a high level?
