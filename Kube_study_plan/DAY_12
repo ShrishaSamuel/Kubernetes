@@ -1,0 +1,19 @@
+Study
+Stable network identity: pod-0, pod-1, ... + headless service.
+Ordered, graceful deploy/scale/delete.
+Per-pod PVCs via volumeClaimTemplates.
+
+Hands-On
+# Headless service (clusterIP: None) + StatefulSet for redis
+kubectl apply -f redis-sts.yaml
+kubectl get pods -l app=redis -w
+nslookup redis-0.redis.default.svc.cluster.local
+kubectl exec -it redis-0 -- redis-cli ping
+kubectl scale sts redis --replicas=5
+
+Interview Qs
+Deployment vs StatefulSet — when to use which.
+Why a headless service for StatefulSets?
+What happens to PVCs when you scale down a StatefulSet?
+Order of pod creation and deletion in a StatefulSet.
+How do you upgrade a StatefulSet safely?
