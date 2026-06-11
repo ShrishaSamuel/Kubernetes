@@ -1,5 +1,4 @@
 Study
-
 ClusterIP (default, internal), NodePort (30000–32767), LoadBalancer (cloud), ExternalName.
 How kube-proxy (iptables/IPVS) routes traffic.
 Service discovery via DNS (<svc>.<ns>.svc.cluster.local).
@@ -13,7 +12,6 @@ kubectl run test --image=busybox -it --rm -- wget -qO- web
 minikube service web-np   # or curl <nodeIP>:<nodePort>
 
 Interview Qs
-
 Difference between ClusterIP, NodePort, LoadBalancer.
 How does a service discover its pods? (selectors + endpoints)
 What is kube-proxy and which modes does it support?
