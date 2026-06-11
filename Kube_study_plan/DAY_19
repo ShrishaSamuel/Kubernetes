@@ -1,0 +1,25 @@
+Study
+
+values.yaml overrides: -f values-prod.yaml, --set.
+Templating: {{ .Values.x }}, {{ include }}, _helpers.tpl, named templates.
+Hooks: pre-install, post-install, pre-upgrade, test.
+Dependencies in Chart.yaml, helm dependency update.
+Hands-On
+
+# Create values-dev.yaml and values-prod.yaml with different replica counts/images
+helm install app ./mychart -f values-prod.yaml
+
+# Add a post-install hook (Job) in templates/hook.yaml with:
+annotations:
+  "helm.sh/hook": post-install
+  "helm.sh/hook-delete-policy": hook-succeeded
+
+helm test <release>
+
+Interview Qs
+
+How does Helm pick the right values file?
+What are Helm hooks? Give two real use cases.
+How do you manage chart dependencies?
+What is _helpers.tpl?
+How would you do environment-specific deploys (dev/stage/prod) with one chart?
