@@ -1,0 +1,22 @@
+Study
+
+Deployment → ReplicaSet → Pods.
+Rolling update strategy vs Recreate. maxSurge, maxUnavailable.
+Revision history, rollback mechanism.
+
+Hands-On
+kubectl create deployment web --image=nginx --replicas=3
+kubectl scale deployment web --replicas=5
+kubectl set image deployment/web nginx=nginx:1.25
+kubectl rollout status deployment/web
+kubectl rollout history deployment/web
+kubectl rollout undo deployment/web
+kubectl rollout undo deployment/web --to-revision=2
+
+Interview Qs
+
+Deployment vs ReplicaSet vs ReplicationController.
+Explain rolling update with maxSurge=1, maxUnavailable=0.
+How does rollback work internally?
+How do you do a blue-green or canary deployment in K8s?
+What happens to old ReplicaSets after a rollout?
