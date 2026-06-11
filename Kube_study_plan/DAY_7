@@ -1,0 +1,22 @@
+Study
+
+Types: Opaque, kubernetes.io/tls, kubernetes.io/dockerconfigjson, kubernetes.io/service-account-token.
+Stored base64-encoded (NOT encrypted by default) — enable encryption at rest in etcd.
+External secret stores: Vault, AWS Secrets Manager via CSI driver / ESO.
+Hands-On
+
+kubectl create secret generic db-secret --from-literal=password=s3cr3t
+kubectl create secret tls my-tls --cert=tls.crt --key=tls.key
+kubectl create secret docker-registry regcred \
+  --docker-server=... --docker-username=... --docker-password=...
+
+# Mount in pod via env or volume
+# Reference in pod spec: imagePullSecrets: [{name: regcred}]
+
+Interview Qs
+
+Are Secrets encrypted? How do you actually encrypt them at rest?
+Difference between Opaque, TLS, and dockerconfigjson secrets.
+How does imagePullSecrets work?
+Best practices for managing secrets in production.
+What is the External Secrets Operator?
