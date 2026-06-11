@@ -1,0 +1,27 @@
+Study
+
+Taint (on node) repels pods; Toleration (on pod) allows it to land.
+Effects: NoSchedule, PreferNoSchedule, NoExecute.
+nodeSelector (simple) vs nodeAffinity (expressive: required/preferred).
+Pod affinity / anti-affinity for co-location/spread.
+Hands-On
+kubectl taint nodes <node> gpu=true:NoSchedule
+# Pod with toleration:
+tolerations:
+- key: gpu
+  operator: Equal
+  value: "true"
+  effect: NoSchedule
+nodeAffinity:
+  requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - {key: disktype, operator: In, values: [ssd]}
+
+Interview Qs
+
+Difference between taint and toleration.
+Three taint effects — explain each.
+nodeSelector vs nodeAffinity vs nodeName.
+Pod affinity vs anti-affinity — give a use case.
+How would you guarantee one pod per node (without DaemonSet)?
