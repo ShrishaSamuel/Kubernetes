@@ -1,0 +1,26 @@
+Study
+Pod = smallest deployable unit, 1+ containers sharing network & IPC.
+Pod lifecycle: Pending → Running → Succeeded/Failed.
+Init containers, sidecar pattern, ephemeral containers (for debug).
+restartPolicy: Always / OnFailure / Never.
+
+Hands-On
+
+kubectl run nginx --image=nginx --restart=Never
+kubectl get pods -o wide
+kubectl describe pod nginx
+kubectl logs nginx
+kubectl exec -it nginx -- /bin/bash
+kubectl delete pod nginx
+
+# Multi-container pod YAML — create one with nginx + busybox sidecar
+kubectl apply -f multi.yaml
+kubectl logs <pod> -c <container>
+
+Interview Qs
+
+Why does a pod have multiple containers? Give a real-world use case.
+Difference between init container and sidecar.
+What is a pause container?
+How do containers in a pod share data?
+What is the difference between kubectl create and kubectl apply?
