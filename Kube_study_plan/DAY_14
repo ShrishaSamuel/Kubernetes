@@ -1,0 +1,27 @@
+Study
+
+PV (cluster resource) ↔ PVC (user request) — bound 1:1.
+Access modes: RWO, ROX, RWX, RWOP.
+Reclaim policy: Retain, Delete, Recycle (deprecated).
+StorageClass → dynamic provisioning via CSI driver.
+Hands-On
+
+kubectl get sc
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: data-pvc}
+spec:
+  accessModes: [ReadWriteOnce]
+  resources: {requests: {storage: 1Gi}}
+EOF
+kubectl get pvc,pv
+# Mount in a pod, write a file, delete pod, recreate, verify file persists
+
+Interview Qs
+
+PV vs PVC vs StorageClass.
+What is dynamic provisioning?
+Access modes — explain RWO vs RWX.
+Reclaim policies — what happens to data on PVC delete?
+What is CSI? Why was in-tree storage deprecated?
