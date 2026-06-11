@@ -1,0 +1,26 @@
+Study
+
+DaemonSet: one pod per node (logging, monitoring, CNI).
+Job: run to completion. completions, parallelism, backoffLimit.
+CronJob: schedule jobs via cron expression. concurrencyPolicy: Allow|Forbid|Replace.
+Hands-On
+
+# DaemonSet — fluent-bit or simple busybox
+kubectl apply -f fluentbit-ds.yaml
+kubectl get ds -A
+
+# Job
+kubectl create job pi --image=perl -- perl -Mbignum=bpi -wle 'print bpi(2000)'
+kubectl logs job/pi
+
+# CronJob
+kubectl create cronjob hello --image=busybox --schedule="*/1 * * * *" -- echo Hello
+kubectl get cronjob,jobs
+
+Interview Qs
+
+DaemonSet use cases.
+How do you ensure a DaemonSet runs on master/control-plane nodes?
+Job vs CronJob.
+What is backoffLimit? activeDeadlineSeconds?
+What happens with concurrencyPolicy: Forbid if previous job is still running?
