@@ -1,0 +1,21 @@
+Study
+
+ClusterIP (default, internal), NodePort (30000–32767), LoadBalancer (cloud), ExternalName.
+How kube-proxy (iptables/IPVS) routes traffic.
+Service discovery via DNS (<svc>.<ns>.svc.cluster.local).
+Endpoints / EndpointSlices.
+
+Hands-On
+kubectl expose deployment web --port=80 --type=ClusterIP
+kubectl expose deployment web --port=80 --type=NodePort --name=web-np
+kubectl get svc,endpoints
+kubectl run test --image=busybox -it --rm -- wget -qO- web
+minikube service web-np   # or curl <nodeIP>:<nodePort>
+
+Interview Qs
+
+Difference between ClusterIP, NodePort, LoadBalancer.
+How does a service discover its pods? (selectors + endpoints)
+What is kube-proxy and which modes does it support?
+Headless service — what is it and when to use?
+How does DNS work inside the cluster?
