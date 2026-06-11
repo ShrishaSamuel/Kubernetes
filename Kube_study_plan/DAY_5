@@ -22,7 +22,6 @@ EOF
 kubectl describe quota -n dev
 
 Interview Qs
-
 Are namespaces a security boundary?
 ResourceQuota vs LimitRange.
 Can a pod in ns-a talk to a pod in ns-b by default?
