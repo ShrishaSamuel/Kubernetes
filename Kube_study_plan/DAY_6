@@ -1,0 +1,28 @@
+Study
+
+3 ways to consume: env vars, command-line args, volume mount.
+Size limit ~1 MiB.
+Updates: env vars are NOT hot-reloaded; volume-mounted files are (with delay).
+Hands-On
+
+kubectl create configmap app-cfg --from-literal=LOG_LEVEL=debug --from-file=app.properties
+kubectl get cm app-cfg -o yaml
+
+# Mount as env
+envFrom:
+- configMapRef: {name: app-cfg}
+
+# Mount as file
+volumes:
+- name: cfg
+  configMap: {name: app-cfg}
+volumeMounts:
+- {name: cfg, mountPath: /etc/app}
+
+Interview Qs
+
+Three ways to use a ConfigMap in a pod.
+If you update a ConfigMap, do pods pick up the change?
+Difference between env and envFrom.
+Size limit of ConfigMap and why.
+ConfigMap vs Secret — when to choose which?
