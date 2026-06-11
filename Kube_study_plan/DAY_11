@@ -1,10 +1,9 @@
 Study
-
 Scales based on CPU/memory/custom metrics via metrics-server / Prometheus Adapter.
 Algorithm: desiredReplicas = ceil(currentReplicas * (currentMetric / targetMetric)).
 HPA needs requests set on the pod.
-Hands-On
 
+Hands-On
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 kubectl autoscale deployment web --cpu-percent=50 --min=2 --max=10
 kubectl run loadgen --image=busybox -it --rm -- /bin/sh -c \
@@ -12,7 +11,6 @@ kubectl run loadgen --image=busybox -it --rm -- /bin/sh -c \
 kubectl get hpa -w
 
 Interview Qs
-
 How does HPA calculate desired replicas?
 Why must requests be set for HPA to work on CPU?
 HPA vs VPA vs Cluster Autoscaler.
