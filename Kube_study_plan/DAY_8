@@ -1,11 +1,10 @@
-Day 20 — Jun 29 — Ingress + Nginx Controller
 Study
 
 Ingress = L7 routing (host/path-based). Needs an Ingress Controller (nginx, traefik, istio).
 TLS termination at ingress.
 IngressClass.
-Hands-On
 
+Hands-On
 # minikube
 minikube addons enable ingress
 
@@ -27,7 +26,6 @@ echo "$(minikube ip) web.local" | sudo tee -a /etc/hosts
 curl http://web.local
 
 Interview Qs
-
 Difference between Service type LoadBalancer and Ingress.
 What is an Ingress Controller? Name a few.
 How do you do path-based vs host-based routing?
