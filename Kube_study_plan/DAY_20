@@ -1,0 +1,20 @@
+Study
+
+Common states: Pending, CrashLoopBackOff, ImagePullBackOff, ErrImagePull, OOMKilled, Evicted, Init:0/1.
+Debug toolkit: describe, logs --previous, events, get pod -o yaml, kubectl debug, ephemeral containers.
+Network debug: nslookup, wget, nc from a debug pod.
+Hands-On
+
+Deliberately break things and diagnose:
+Wrong image tag → ImagePullBackOff.
+Bad command → CrashLoopBackOff. Check kubectl logs --previous.
+Memory hog with low limit → OOMKilled.
+PVC not bound → pod Pending. Check kubectl describe pvc.
+Taint without toleration → pod Pending. Check kubectl describe pod events.
+Interview Qs
+
+Pod is Pending — walk me through your debug.
+CrashLoopBackOff — what do you check first?
+Pod is Running but not Ready — why?
+How do you debug a pod with no shell (distroless)?
+How do you check why the scheduler didn't place a pod?
