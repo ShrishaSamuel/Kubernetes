@@ -16,3 +16,4 @@ Why must requests be set for HPA to work on CPU?
 HPA vs VPA vs Cluster Autoscaler.
 How do you scale on custom metrics (e.g., queue length)?
 What is the cooldown / stabilization window?
+
