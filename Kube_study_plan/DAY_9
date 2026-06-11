@@ -1,0 +1,26 @@
+Study
+
+Liveness: restart container if failing.
+Readiness: remove from service endpoints if failing.
+Startup: gate liveness for slow-starting apps.
+Handlers: httpGet, tcpSocket, exec, grpc.
+Hands-On
+
+livenessProbe:
+  httpGet: {path: /healthz, port: 8080}
+  initialDelaySeconds: 10
+  periodSeconds: 10
+readinessProbe:
+  httpGet: {path: /ready, port: 8080}
+  periodSeconds: 5
+startupProbe:
+  httpGet: {path: /healthz, port: 8080}
+  failureThreshold: 30
+  periodSeconds: 10Make a probe fail intentionally; observe pod restarts / endpoint removal.
+Interview Qs
+
+Liveness vs readiness vs startup probe — when to use each.
+What happens if readiness fails but liveness passes?
+Default values for initialDelaySeconds, periodSeconds, failureThreshold.
+Can a pod be "Running" but not "Ready"?
+How does startup probe interact with liveness?
