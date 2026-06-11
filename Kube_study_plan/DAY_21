@@ -1,0 +1,26 @@
+Study
+
+EKS = AWS-managed control plane. You manage nodes (managed node groups, self-managed, or Fargate).
+IRSA (IAM Roles for Service Accounts) — OIDC-based pod-level AWS permissions.
+AWS Load Balancer Controller — provisions ALB/NLB from Ingress/Service.
+VPC CNI for pod networking; pods get VPC IPs.
+Hands-On
+
+eksctl create cluster --name dev --region us-east-1 --nodes 2
+aws eks update-kubeconfig --name dev --region us-east-1
+kubectl get nodes
+
+# Enable IRSA
+eksctl utils associate-iam-oidc-provider --cluster dev --approve
+eksctl create iamserviceaccount --cluster dev --name s3-reader \
+  --attach-policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess --approve
+
+# Install AWS LB Controller via helm (per AWS docs)
+
+Interview Qs
+
+EKS vs self-managed K8s — what does AWS manage?
+What is IRSA and why is it better than node IAM roles?
+Managed node groups vs Fargate vs self-managed.
+How does the AWS Load Balancer Controller work?
+How does the VPC CNI assign IPs to pods?
